@@ -1,0 +1,188 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "${project}",
+    "version": "1.0.0",
+    "license": {
+      "name": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "Article"
+    }
+  ],
+  "schemes": ["https"],
+  "paths": {
+    "/articles": {
+      "get": {
+        "tags": ["Article"],
+        "summary": "List articles",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Article"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{ \"statusCode\": 200 }"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "[{ \"id\": 1, \"title\": \"article1\" }]"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Article"],
+        "summary": "Add a new article",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{ \"statusCode\": 200 }"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "{ \"id\": 1, \"title\": \"article1\" }"
+              }
+            }
+          }
+        }
+      },
+      "options": {
+        "tags": ["Article"],
+        "summary": "CORS support",
+        "responses": {
+          "204": {
+            "description": "successful operation",
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "x-example": "text/plain"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{ \"statusCode\": 204 }"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "204",
+              "responseParameters": {
+                "method.response.header.Content-Type": "'text/plain'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                "method.response.header.Access-Control-Allow-Headers":
+                  "'Content-Type,Authorization,X-Amz-Date,X-Amz-Security-Token,X-Api-Key'"
+              },
+              "responseTemplates": {
+                "text/plain": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{id}": {
+      "delete": {
+        "tags": ["Article"],
+        "summary": "Delete a article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "x-example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation",
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "x-example": "text/plain"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{ \"statusCode\": 204 }"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "204",
+              "responseParameters": {
+                "method.response.header.Content-Type": "'text/plain'"
+              },
+              "responseTemplates": {
+                "text/plain": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Article": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
