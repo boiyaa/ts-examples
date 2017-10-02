@@ -2,18 +2,21 @@
 
 ## requirements
 
+### Install aws-cli and terraform
+
+### Install dependencies
+
+```sh
+$ cd path/to/swagger-api-gateway-mock
+$ npm install
+```
+
 ### `aws configure` or environment variables
 
 ```sh
 $ export AWS_ACCESS_KEY_ID=your access key
 $ export AWS_SECRET_ACCESS_KEY=your secret key
 $ export AWS_DEFAULT_REGION=your region
-```
-
-### install
-
-```sh
-$ npm install
 ```
 
 ## Show the execution plan to AWS

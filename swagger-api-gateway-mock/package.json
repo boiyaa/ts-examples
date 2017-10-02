@@ -6,8 +6,9 @@
   "scripts": {
     "plan": "cd src && terraform plan",
     "apply": "cd src && terraform apply",
-    "deploy": "cd src && aws apigateway create-deployment --rest-api-id `terraform output rest_api_id` --stage-name prod",
-    "test": "cd src && dredd templates/swagger.json `terraform output invoke_url`/prod"
+    "deploy":
+      "cd src && aws apigateway create-deployment --rest-api-id `terraform output rest_api_id` --stage-name prod",
+    "test": "cd src && dredd swagger.json `terraform output invoke_url`/prod"
   },
   "author": "boiyaa <boiyaa@hotmail.com>",
   "license": "MIT",
