@@ -13,6 +13,6 @@
   "author": "boiyaa <boiyaa@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "dredd": "^4.5.0"
+    "dredd": "^5.1.9"
   }
 }
