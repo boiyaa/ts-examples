@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "react/package.json",
+        "recompose/package.json",
+        "swagger-api-gateway-mock/package.json"
+      ]
+    }
+  }
+}
